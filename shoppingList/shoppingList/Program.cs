@@ -16,7 +16,10 @@ namespace shoppingList
             //2) remove from the list
             //3) view the list
             //4) exit
-            AarizList list = new AarizList();
+
+
+            
+            AarizList<string> list = new AarizList<string>();
             bool stillRunning = true;
             
 
@@ -40,11 +43,10 @@ namespace shoppingList
                         Console.WriteLine(" ");
                         break;
                     case 3:
-                        /*for(int i = 0; i < list.Length; i++)
+                        foreach(string word in list)
                         {
-                            Console.WriteLine(list[i]);
-                        } */
-
+                            Console.WriteLine(word);
+                        }
 
                         Console.WriteLine(" ");
                         break;

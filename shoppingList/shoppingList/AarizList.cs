@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace shoppingList
 {
-    class AarizList
+    class AarizList<T> where T : IComparable<T> 
     {
-        string[] list;
+        T[] list;
         //make a constructor with any loading logic you need
         public AarizList()
         {
-            list = new string[0];
+            list = new T[0];
         }
 
         //add function
-        public void Add(string item)
+        public void Add(T item)
         {
-            string[] temporary = new string[list.Length + 1];
+            T[] temporary = new T[list.Length + 1];
             for (int i = 0; i < list.Length; i++)
             {
                 temporary[i] = list[i];
@@ -29,14 +29,14 @@ namespace shoppingList
         }
 
         //remove function
-        public void Remove(string item)
+        public void Remove(T item)
         {
-            string[] temporary = new string[list.Length - 1];
+            T[] temporary = new T[list.Length - 1];
             int counter = 0;
 
             for (int i = 0; i < temporary.Length; i++)
             {
-                if (list[i] == item)
+                if (list[i].CompareTo(item) == 0)
                 {
                     counter++;
                 }
@@ -48,6 +48,15 @@ namespace shoppingList
 
             list = temporary;
         }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for(int i = 0; i < list.Length; i++)
+            {
+                yield return list[i];
+            }
+        }
+
 
     }
 }
